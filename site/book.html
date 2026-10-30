@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book now · SPLY/DMND</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Book a DJ or artist from SPLY/DMND.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="./">SPLY<span>/</span>DMND</a>
+    <nav aria-label="Main"><ul><li><a href="./">Home</a></li><li><a href="roster.html">Roster</a></li><li><a href="services.html">Services</a></li><li><a href="dates.html">Dates</a></li><li><a href="about.html">About</a></li></ul></nav>
+    <div class="nav-right">
+      <a class="btn solid book-btn" href="book.html">Book now</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
+  <ul>
+    <li><a href="./">Home</a></li><li><a href="roster.html">Roster</a></li><li><a href="services.html">Services</a></li><li><a href="dates.html">Dates</a></li><li><a href="about.html">About</a></li>
+  </ul>
+  <a class="btn solid" href="book.html">Book now</a>
+  <div class="label">hello@splydmnd.com</div>
+</nav>
+<main>
+<section class="block book" id="book"><div class="wrap">
+  <div>
+    <div class="label">Booking desk</div>
+    <h1>Book now</h1>
+    <p>Tell us the date, the room and the crowd. Fill in the form to build your inquiry, then paste it into an email.</p>
+    <div class="contact">hello@splydmnd.com</div>
+  </div>
+  <form id="inquiry-form" novalidate>
+    <div class="row">
+      <label for="f-name">Name<input id="f-name" name="name" value="Maya Ortiz"></label>
+      <label for="f-org">Company or venue<input id="f-org" name="org" value="Rooftop bar, Williamsburg"></label>
+    </div>
+    <div class="row">
+      <label for="f-type">I'm looking for
+        <select id="f-type" name="type">
+          <option selected>DJ booking</option><option>Artist booking</option><option>DJ management</option>
+          <option>Artist representation</option><option>Hospitality / music programming</option>
+          <option>Event curation</option><option>Experiential project</option>
+        </select>
+      </label>
+      <label for="f-artist">Artist
+        <select id="f-artist" name="artist"><option value="">No preference</option><option value="dj-clean" data-type="dj">DJ Clean</option><option value="marisol-vega" data-type="dj">Marisol Vega</option><option value="knxx" data-type="dj">KNXX</option><option value="selector-dre" data-type="dj">Selector Dre</option><option value="lux-ama" data-type="artist">Lux Ama</option><option value="theo-grant" data-type="artist">Theo Grant</option><option value="nina-rue" data-type="artist">Nina Rue</option><option value="okon" data-type="artist">Okon</option></select>
+      </label>
+    </div>
+    <label for="f-date">Date (if known)<input id="f-date" name="date" type="date" value="2026-12-12"></label>
+    <label for="f-msg">Details<textarea id="f-msg" name="msg">Holiday party for about 200 guests. Looking for an open-format DJ from 8pm to 1am.</textarea></label>
+    <div class="form-foot">
+      <button class="btn solid" type="submit">Copy inquiry</button>
+      <p class="status" id="f-status" role="status"></p>
+    </div>
+    <textarea id="f-out" aria-label="Your inquiry text" readonly hidden></textarea>
+  </form>
+</div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="mark">SPLY<span>/</span>DMND</span>
+      <div class="foot-cols">
+        <ul class="foot-links"><li><a href="./">Home</a></li><li><a href="roster.html">Roster</a></li><li><a href="services.html">Services</a></li><li><a href="dates.html">Dates</a></li><li><a href="about.html">About</a></li><li><a href="book.html">Book now</a></li></ul>
+        <ul class="foot-links">
+          <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://soundcloud.com" target="_blank" rel="noopener">SoundCloud</a></li>
+          <li><a href="https://open.spotify.com" target="_blank" rel="noopener">Spotify</a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span class="label">DJ Management · Artist Representation · Hospitality · Events · Experiential</span>
+      <span class="label">Brooklyn, NY · © 2026 SPLY/DMND</span>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SPLY/DMND</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="SPLY/DMND is a Brooklyn agency for DJ management and booking, artist representation, hospitality, events and experiential.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="./">SPLY<span>/</span>DMND</a>
+    <nav aria-label="Main"><ul><li><a href="./" aria-current="page">Home</a></li><li><a href="roster.html">Roster</a></li><li><a href="services.html">Services</a></li><li><a href="dates.html">Dates</a></li><li><a href="about.html">About</a></li></ul></nav>
+    <div class="nav-right">
+      <a class="btn solid book-btn" href="book.html">Book now</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
+  <ul>
+    <li><a href="./" aria-current="page">Home</a></li><li><a href="roster.html">Roster</a></li><li><a href="services.html">Services</a></li><li><a href="dates.html">Dates</a></li><li><a href="about.html">About</a></li>
+  </ul>
+  <a class="btn solid" href="book.html">Book now</a>
+  <div class="label">hello@splydmnd.com</div>
+</nav>
+<main>
+<section class="hero" aria-roledescription="carousel" aria-label="Featured">
+  <div class="slides">
+    <article class="slide slide-photo is-active" aria-label="Slide 1 of 3">
+      <img class="slide-img" src="images/dj-clean.jpg" alt="DJ Clean">
+      <div class="wrap slide-body">
+        <div class="label">Featured DJ · The Sound of The People</div>
+        <h1 class="slide-name">DJ Clean</h1>
+        <p class="slide-copy">Los Angeles-based, D.C.-raised open-format DJ with 20+ years of energy, style and range for clubs, private events, corporate functions and brand activations.</p>
+        <div class="slide-actions"><a class="btn" href="roster/dj-clean.html">More info</a><a class="btn solid" href="book.html#dj-clean">Book now</a></div>
+      </div>
+    </article>
+    <article class="slide" aria-label="Slide 2 of 3">
+      <canvas data-hue="260" data-seed="154" aria-hidden="true"></canvas>
+      <div class="wrap slide-body">
+        <div class="label">Hospitality</div>
+        <h2 class="slide-name">Sound is <em>the room</em></h2>
+        <p class="slide-copy">Music programming and residency planning for hotels, bars, restaurants and lounges.</p>
+        <div class="slide-actions"><a class="btn" href="services.html">Our services</a><a class="btn solid" href="book.html">Talk to us</a></div>
+      </div>
+    </article>
+    <article class="slide" aria-label="Slide 3 of 3">
+      <canvas data-hue="210" data-seed="207" aria-hidden="true"></canvas>
+      <div class="wrap slide-body">
+        <div class="label">Experiential</div>
+        <h2 class="slide-name">Nights <em>people</em> remember</h2>
+        <p class="slide-copy">Activations, launches and one-off concepts where the lineup leads and the room tells the story.</p>
+        <div class="slide-actions"><a class="btn" href="services.html">See how</a><a class="btn solid" href="book.html">Start a project</a></div>
+      </div>
+    </article>
+  </div>
+  <div class="slide-controls"><div class="wrap">
+    <div class="dots" role="group" aria-label="Choose slide">
+      <button class="dot is-active" id="dot-0" aria-label="Show slide 1" aria-current="true"></button>
+      <button class="dot" id="dot-1" aria-label="Show slide 2"></button>
+      <button class="dot" id="dot-2" aria-label="Show slide 3"></button>
+    </div>
+    <span class="counter" id="counter">01 / 03</span>
+  </div></div>
+</section>
+<section class="block" id="services"><div class="wrap">
+  <div class="head"><h2>Services</h2><p>One agency on both sides of the booth: we represent the talent, and we program the rooms that need them.</p></div>
+  <ul class="services"><li class="svc"><div><h3>DJ Management &amp; Booking</h3><span class="label for">For DJs · For venues</span></div><div><p>Career strategy, calendar building, negotiation and advancing. Venues get vetted DJs matched to the room and the crowd.</p><div class="tags">Residencies · Club nights · Private events · Touring</div></div><a class="more" href="book.html">Book a DJ →</a></li><li class="svc"><div><h3>Artist Representation</h3><span class="label for">For artists</span></div><div><p>A partner on positioning, partnerships and live opportunities, built on years of artist management experience.</p><div class="tags">Strategy · Brand partnerships · Live</div></div><a class="more" href="book.html">Get represented →</a></li><li class="svc"><div><h3>Hospitality Management</h3><span class="label for">For hotels · Bars · Restaurants</span></div><div><p>Music programming and nightlife direction for venues that want sound to be part of who they are, from brunch to last call.</p><div class="tags">Programming · Residency planning · Venue nights</div></div><a class="more" href="book.html">Program a venue →</a></li><li class="svc"><div><h3>Event Curation</h3><span class="label for">For brands · Private clients</span></div><div><p>Music-first events built from the lineup out: talent, flow, timing and room, planned by someone who reads crowds for a living.</p><div class="tags">Brand events · Launches · Parties · Series</div></div><a class="more" href="book.html">Plan an event →</a></li><li class="svc"><div><h3>Experiential</h3><span class="label for">For brands · Collaborators</span></div><div><p>Activations and one-off concepts where music is the hook. If the idea doesn't fit a category yet, we want to hear it.</p><div class="tags">Activations · Pop-ups · Collaborations</div></div><a class="more" href="book.html">Pitch an idea →</a></li></ul>
+</div></section>
+<section class="block roster-bg" id="roster"><div class="wrap">
+  <div class="head">
+    <h2>Roster</h2>
+    <div class="tabs" role="group" aria-label="Filter roster">
+      <button class="tab" id="tab-all" data-filter="all" aria-pressed="true">All</button>
+      <button class="tab" id="tab-dj" data-filter="dj" aria-pressed="false">DJs</button>
+      <button class="tab" id="tab-artist" data-filter="artist" aria-pressed="false">Artists</button>
+    </div>
+  </div>
+  <div class="grid"><a class="card" href="roster/dj-clean.html" data-type="dj">
+  <div class="photo"><img src="images/dj-clean.jpg" alt="DJ Clean" loading="lazy" style="object-position:38% 30%"></div>
+  <h3>DJ Clean</h3>
+  <div class="meta"><span>DJ · Open format</span><span>View →</span></div>
+</a><a class="card" href="roster/marisol-vega.html" data-type="dj">
+  <div class="photo"><canvas data-hue="229" data-seed="169" aria-hidden="true"></canvas><span class="initials" aria-hidden="true">MV</span><span class="sample">Sample</span></div>
+  <h3>Marisol Vega</h3>
+  <div class="meta"><span>DJ · House · Disco</span><span>View →</span></div>
+</a><a class="card" href="roster/knxx.html" data-type="dj">
+  <div class="photo"><canvas data-hue="258" data-seed="118" aria-hidden="true"></canvas><span class="initials" aria-hidden="true">K</span><span class="sample">Sample</span></div>
+  <h3>KNXX</h3>
+  <div class="meta"><span>DJ · Techno</span><span>View →</span></div>
+</a><a class="card" href="roster/selector-dre.html" data-type="dj">
+  <div class="photo"><canvas data-hue="217" data-seed="243" aria-hidden="true"></canvas><span class="initials" aria-hidden="true">SD</span><span class="sample">Sample</span></div>
+  <h3>Selector Dre</h3>
+  <div class="meta"><span>DJ · Hip-hop · R&amp;B</span><span>View →</span></div>
+</a><a class="card" href="roster/lux-ama.html" data-type="artist">
+  <div class="photo"><canvas data-hue="246" data-seed="225" aria-hidden="true"></canvas><span class="initials" aria-hidden="true">LA</span><span class="sample">Sample</span></div>
+  <h3>Lux Ama</h3>
+  <div class="meta"><span>Artist · Afro-house · Live</span><span>View →</span></div>
+</a><a class="card" href="roster/theo-grant.html" data-type="artist">
+  <div class="photo"><canvas data-hue="205" data-seed="295" aria-hidden="true"></canvas><span class="initials" aria-hidden="true">TG</span><span class="sample">Sample</span></div>
+  <h3>Theo Grant</h3>
+  <div class="meta"><span>Artist · Soul · Keys</span><span>View →</span></div>
+</a><a class="card" href="roster/nina-rue.html" data-type="artist">
+  <div class="photo"><canvas data-hue="234" data-seed="310" aria-hidden="true"></canvas><span class="initials" aria-hidden="true">NR</span><span class="sample">Sample</span></div>
+  <h3>Nina Rue</h3>
+  <div class="meta"><span>Artist · Alt R&amp;B</span><span>View →</span></div>
+</a><a class="card" href="roster/okon.html" data-type="artist">
+  <div class="photo"><canvas data-hue="263" data-seed="303" aria-hidden="true"></canvas><span class="initials" aria-hidden="true">O</span><span class="sample">Sample</span></div>
+  <h3>Okon</h3>
+  <div class="meta"><span>Artist · Afrobeats</span><span>View →</span></div>
+</a></div>
+</div></section>
+<section class="block" id="dates"><div class="wrap">
+  <div class="head"><h2>Upcoming</h2><p>Where the roster is playing next. <span class="sample">Sample dates</span></p></div>
+  <div class="table-wrap"><table><thead><tr><th>Date</th><th>Artist</th><th>Venue</th><th>City</th><th>Type</th></tr></thead><tbody><tr><td class="date">Nov 07<small>Sat</small></td><td class="artist"><a href="roster/okon.html">Okon</a></td><td>Rooftop series</td><td>Williamsburg, BK</td><td class="type">Residency</td></tr><tr><td class="date">Nov 14<small>Sat</small></td><td class="artist"><a href="roster/marisol-vega.html">Marisol Vega</a></td><td>Hotel lobby lounge</td><td>Midtown, NYC</td><td class="type">Hospitality</td></tr><tr><td class="date">Nov 21<small>Sat</small></td><td class="artist"><a href="roster/knxx.html">KNXX</a></td><td>Warehouse party</td><td>Bushwick, BK</td><td class="type">Club night</td></tr><tr><td class="date">Dec 05<small>Sat</small></td><td class="artist"><a href="roster/lux-ama.html">Lux Ama</a></td><td>Product launch</td><td>SoHo, NYC</td><td class="type">Brand event</td></tr><tr><td class="date">Dec 12<small>Sat</small></td><td class="artist"><a href="roster/selector-dre.html">Selector Dre</a></td><td>Holiday party</td><td>DUMBO, BK</td><td class="type">Private</td></tr></tbody></table></div>
+</div></section>
+<section class="block about" id="about"><div class="wrap">
+  <div class="big23" aria-hidden="true">23</div>
+  <div>
+    <div class="label">About SPLY/DMND</div>
+    <h2>Built from the booth out</h2>
+    <p>SPLY/DMND grew out of 23 years of DJing and hands-on work in artist management and event curation. We understand a booking from every angle: what talent needs to do their best work, and what a venue or brand needs to see on the night.</p>
+    <p>Supply is the talent. Demand is the room. We make the match.</p>
+    <ul class="creds">
+      <li><span>DJ</span><span>23 years, every room size</span></li>
+      <li><span>Management</span><span>Artist management background</span></li>
+      <li><span>Events</span><span>Music-first curation</span></li>
+    </ul>
+  </div>
+</div></section>
+<section class="block book" id="book"><div class="wrap">
+  <div>
+    <div class="label">Booking desk</div>
+    <h2>Book now</h2>
+    <p>Tell us the date, the room and the crowd. Fill in the form to build your inquiry, then paste it into an email.</p>
+    <div class="contact">hello@splydmnd.com</div>
+  </div>
+  <form id="inquiry-form" novalidate>
+    <div class="row">
+      <label for="f-name">Name<input id="f-name" name="name" value="Maya Ortiz"></label>
+      <label for="f-org">Company or venue<input id="f-org" name="org" value="Rooftop bar, Williamsburg"></label>
+    </div>
+    <div class="row">
+      <label for="f-type">I'm looking for
+        <select id="f-type" name="type">
+          <option selected>DJ booking</option><option>Artist booking</option><option>DJ management</option>
+          <option>Artist representation</option><option>Hospitality / music programming</option>
+          <option>Event curation</option><option>Experiential project</option>
+        </select>
+      </label>
+      <label for="f-artist">Artist
+        <select id="f-artist" name="artist"><option value="">No preference</option><option value="dj-clean" data-type="dj">DJ Clean</option><option value="marisol-vega" data-type="dj">Marisol Vega</option><option value="knxx" data-type="dj">KNXX</option><option value="selector-dre" data-type="dj">Selector Dre</option><option value="lux-ama" data-type="artist">Lux Ama</option><option value="theo-grant" data-type="artist">Theo Grant</option><option value="nina-rue" data-type="artist">Nina Rue</option><option value="okon" data-type="artist">Okon</option></select>
+      </label>
+    </div>
+    <label for="f-date">Date (if known)<input id="f-date" name="date" type="date" value="2026-12-12"></label>
+    <label for="f-msg">Details<textarea id="f-msg" name="msg">Holiday party for about 200 guests. Looking for an open-format DJ from 8pm to 1am.</textarea></label>
+    <div class="form-foot">
+      <button class="btn solid" type="submit">Copy inquiry</button>
+      <p class="status" id="f-status" role="status"></p>
+    </div>
+    <textarea id="f-out" aria-label="Your inquiry text" readonly hidden></textarea>
+  </form>
+</div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="mark">SPLY<span>/</span>DMND</span>
+      <div class="foot-cols">
+        <ul class="foot-links"><li><a href="./">Home</a></li><li><a href="roster.html">Roster</a></li><li><a href="services.html">Services</a></li><li><a href="dates.html">Dates</a></li><li><a href="about.html">About</a></li><li><a href="book.html">Book now</a></li></ul>
+        <ul class="foot-links">
+          <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://soundcloud.com" target="_blank" rel="noopener">SoundCloud</a></li>
+          <li><a href="https://open.spotify.com" target="_blank" rel="noopener">Spotify</a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span class="label">DJ Management · Artist Representation · Hospitality · Events · Experiential</span>
+      <span class="label">Brooklyn, NY · © 2026 SPLY/DMND</span>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
