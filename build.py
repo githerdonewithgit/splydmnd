@@ -32,7 +32,7 @@ ROSTER = [
          clients="Red Bull, Atlantic Records, Coca-Cola, Atlas Strategy Group",
          sample=False, email="all-en1@all-en1.com",
          instagram="https://www.instagram.com/all_en1/", twitter="https://x.com/all_en1",
-         photo="images/all-en1.jpg", pos="50% 30%",
+         photo="images/all-en1-lantern.jpg", pos="38% 30%",
          bio=["Jordan “All-En1” Allen remembers exactly when he wanted to get into the music business. It was his 8th grade end-of-year trip, and he had stayed up way too late the night before recording the best new songs off the radio (yes, he came up in the era when that was the only way to make mixtapes). When he played the tape on the bus to Busch Gardens, everyone wanted a copy. That's when he knew he had an ear for music.",
               "His ear for music grew into a passion for sharing it with others. He soon learned to DJ and went on to host a successful college radio show at WNUR 89.3 at Northwestern University. His love of DJing and interest in the music industry eventually landed him in New York City as an intern, and then manager, at the legendary Violator Music Management, working for music mogul and visionary Chris Lighty.",
               "At Violator, Jordan honed his management and A&R skills on projects for Soulja Boy, Diggy Simmons and 50 Cent, and with corporate partners such as vitaminwater and Coca-Cola. That experience inspired him to start his own artist management and events company, FTM, where he put on shows and spun at parties in some of NYC’s most prominent venues."]),
