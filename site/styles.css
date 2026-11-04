@@ -300,3 +300,6 @@ footer .wrap { padding-block: 48px 36px; display: grid; gap: 32px; }
   .epk-bar, .mixes iframe, .epk .actions { display: none !important; }
   .epk-sec, .epk-hero { break-inside: avoid; }
 }
+
+.epk-book .epk-mail { margin-top: 14px; font-family: var(--mono); font-size: 15px; }
+.epk-book .epk-mail a { color: inherit; }

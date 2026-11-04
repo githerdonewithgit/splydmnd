@@ -3,7 +3,7 @@ import os
 from html import escape as e
 
 OUT = "site"
-EMAIL = "hello@splydmnd.com"
+EMAIL = "bookings@splyanddmnd.com"
 BASE_HUE = 235
 
 ROSTER = [
@@ -118,7 +118,7 @@ def nav(p, active):
     {links}
   </ul>
   <a class="btn solid" href="{p}book.html">Book now</a>
-  <div class="label">{EMAIL}</div>
+  <a class="label" href="mailto:{EMAIL}">{EMAIL}</a>
 </nav>"""
 
 
@@ -356,13 +356,13 @@ def book_section(tag):
   <div>
     <div class="label">Booking desk</div>
     <{tag}>Book now</{tag}>
-    <p>Tell us the date, the room and the crowd. Fill in the form to build your inquiry, then paste it into an email.</p>
-    <div class="contact">{EMAIL}</div>
+    <p>Tell us the date, the room and the crowd. Fill in the form and it opens an email to us with your details ready to send.</p>
+    <div class="contact"><a href="mailto:{EMAIL}">{EMAIL}</a></div>
   </div>
   <form id="inquiry-form" novalidate>
     <div class="row">
-      <label for="f-name">Name<input id="f-name" name="name" value="Maya Ortiz"></label>
-      <label for="f-org">Company or venue<input id="f-org" name="org" value="Rooftop bar, Williamsburg"></label>
+      <label for="f-name">Name<input id="f-name" name="name" placeholder="Your name" autocomplete="name"></label>
+      <label for="f-org">Company or venue<input id="f-org" name="org" placeholder="e.g. Rooftop bar, Williamsburg" autocomplete="organization"></label>
     </div>
     <div class="row">
       <label for="f-type">I'm looking for
@@ -376,10 +376,10 @@ def book_section(tag):
         <select id="f-artist" name="artist"><option value="">No preference</option>{opts}</select>
       </label>
     </div>
-    <label for="f-date">Date (if known)<input id="f-date" name="date" type="date" value="2026-12-12"></label>
-    <label for="f-msg">Details<textarea id="f-msg" name="msg">Holiday party for about 200 guests. Looking for an open-format DJ from 8pm to 1am.</textarea></label>
+    <label for="f-date">Date (if known)<input id="f-date" name="date" type="date"></label>
+    <label for="f-msg">Details<textarea id="f-msg" name="msg" placeholder="e.g. Holiday party for about 200 guests. Looking for an open-format DJ from 8pm to 1am."></textarea></label>
     <div class="form-foot">
-      <button class="btn solid" type="submit">Copy inquiry</button>
+      <button class="btn solid" type="submit">Email inquiry</button>
       <p class="status" id="f-status" role="status"></p>
     </div>
     <textarea id="f-out" aria-label="Your inquiry text" readonly hidden></textarea>
@@ -530,7 +530,8 @@ def epk_page(a):
 </div></section>
 <section class="epk-book" id="booking"><div class="wrap">
   <div><div class="label">Booking · Represented by SPLY/DMND</div><h2>Book {name}</h2>
-  <p>Send the date, city, venue and set length. We\u2019ll come back with availability and rates.</p></div>
+  <p>Send the date, city, venue and set length. We\u2019ll come back with availability and rates.</p>
+  <p class="epk-mail"><a href="mailto:{EMAIL}?subject=Booking%20inquiry%3A%20{slug}">{EMAIL}</a></p></div>
   <div class="actions"><a class="btn solid" href="{p}book.html#{slug}">Start an inquiry →</a><a class="btn" href="{p}roster/{slug}.html">Full profile</a></div>
 </div></section>
 </main>

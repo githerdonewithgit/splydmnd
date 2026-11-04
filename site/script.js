@@ -121,10 +121,11 @@
         'Looking for: ' + typeSel.value, 'Artist: ' + artist, 'Date: ' + (form.elements.date.value || 'Flexible'), '',
         form.elements.msg.value.trim()].join('\n');
       out.value = text;
-      var fallback = function () { out.hidden = false; out.focus(); out.select(); status.textContent = 'Select all and copy the text below into an email.'; };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { out.hidden = true; status.textContent = 'Copied. Paste it into an email to hello@splydmnd.com.'; }, fallback);
-      } else { fallback(); }
+      var to = 'bookings@splyanddmnd.com';
+      var subject = 'Inquiry: ' + typeSel.value + (artistSel.value ? ' (' + artist + ')' : '') + ' from ' + name;
+      out.hidden = false;
+      status.textContent = 'Your email app should open with this inquiry ready to send to ' + to + '. If it doesn\u2019t, copy the text below and email it to us.';
+      window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
     });
   }
 })();
