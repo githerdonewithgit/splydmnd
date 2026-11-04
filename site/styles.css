@@ -196,7 +196,8 @@ tbody tr:hover td { background: var(--surface); }
 .profile .wrap { padding-block: 48px 88px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: start; }
 .profile .photo { aspect-ratio: 4 / 5; }
 .profile .initials { font-size: clamp(96px, 14vw, 200px); left: 20px; bottom: 10px; }
-.profile h1 { font-weight: 900; font-size: clamp(72px, 11vw, 150px); line-height: .82; margin: 14px 0 24px; }
+.profile h1 { font-weight: 900; font-size: clamp(72px, 11vw, 150px); line-height: .82; margin: 14px 0 24px; overflow-wrap: anywhere; }
+.profile h1.long { font-size: clamp(52px, 7.5vw, 112px); }
 .profile .bio p { margin: 0 0 16px; max-width: 58ch; opacity: .88; }
 .facts { list-style: none; margin: 28px 0; padding: 0; border-top: 1px solid var(--rule); }
 .facts li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding-block: 12px; border-bottom: 1px solid var(--rule); }

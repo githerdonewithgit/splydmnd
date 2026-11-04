@@ -30,6 +30,11 @@ ROSTER = [
          sample=False, photo="images/june-20ix.jpg", pos="45% 35%",
          bio=["JUNE 20IX is a DJ duo represented by SPLY/DMND.",
               "Full bio coming soon. To check availability, tap Book below."]),
+    dict(slug="chvsing-sunsets", name="Chvsing Sunsets", type="dj", genre="DJ",
+         sample=False, photo="images/chvsing-sunsets.jpg", pos="50% 50%",
+         instagram="https://www.instagram.com/chvsing_sunsets/",
+         bio=["Chvsing Sunsets is represented by SPLY/DMND.",
+              "Full bio coming soon. To check availability, tap Book below."]),
     dict(slug="marisol-vega", name="Marisol Vega", type="dj", genre="House · Disco", based="Queens, NY",
          avail="Hotel lounges, dinner service, late nights",
          bio=["Marisol Vega builds slow-burn sets that start as dinner music and end as a dance floor.",
@@ -421,7 +426,7 @@ def artist_page(a):
   <div class="photo">{photo(a, p)}{photo_tag}</div>
   <div>
     <div class="label"><a href="{p}roster.html">Roster</a> / {kind}{badge}</div>
-    <h1>{e(a['name'])}</h1>
+    <h1{' class="long"' if len(a['name']) > 12 else ''}>{e(a['name'])}</h1>
     <div class="bio">{bio}</div>
     <ul class="facts">{facts}
     </ul>
