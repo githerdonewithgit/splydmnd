@@ -35,34 +35,6 @@ ROSTER = [
          instagram="https://www.instagram.com/chvsing_sunsets/",
          bio=["Chvsing Sunsets is represented by SPLY/DMND.",
               "Full bio coming soon. To check availability, tap Book below."]),
-    dict(slug="marisol-vega", name="Marisol Vega", type="dj", genre="House · Disco", based="Queens, NY",
-         avail="Hotel lounges, dinner service, late nights",
-         bio=["Marisol Vega builds slow-burn sets that start as dinner music and end as a dance floor.",
-              "Her residencies in hotel lounges are known for soulful house, classic disco edits and long, smooth blends."]),
-    dict(slug="knxx", name="KNXX", type="dj", genre="Techno", based="Bushwick, BK",
-         avail="Club nights, warehouse parties",
-         bio=["KNXX plays driving, hypnotic techno built for dark rooms and long sets.",
-              "A fixture of the Brooklyn warehouse scene, comfortable opening, closing or playing all night."]),
-    dict(slug="selector-dre", name="Selector Dre", type="dj", genre="Hip-hop · R&B", based="Harlem, NYC",
-         avail="Private events, brand activations, parties",
-         bio=["Selector Dre is a crowd-pleaser in the best sense: deep crates of hip-hop and R&B with tight, clean mixing.",
-              "Booked often for private events and launches where the guest list is wide and everyone needs to dance."]),
-    dict(slug="lux-ama", name="Lux Ama", type="artist", genre="Afro-house · Live", based="Brooklyn, NY",
-         avail="Live sets, brand events, festivals",
-         bio=["Lux Ama blends Afro-house production with live percussion and vocals for a set that feels like a performance.",
-              "A strong fit for launches and activations that want a moment, not just a playlist."]),
-    dict(slug="theo-grant", name="Theo Grant", type="artist", genre="Soul · Keys", based="Jersey City, NJ",
-         avail="Dinner sets, private events, hospitality",
-         bio=["Theo Grant performs live keys and soul covers with original arrangements.",
-              "Ideal for dinners, cocktail hours and hotel programming that call for live music with warmth."]),
-    dict(slug="nina-rue", name="Nina Rue", type="artist", genre="Alt R&B", based="Manhattan, NY",
-         avail="Showcases, brand partnerships, live shows",
-         bio=["Nina Rue writes moody, modern R&B and performs with a stripped-back live band.",
-              "Represented for live opportunities and brand partnerships that suit her sound."]),
-    dict(slug="okon", name="Okon", type="artist", genre="Afrobeats", based="The Bronx, NY",
-         avail="Live shows, festivals, brand events",
-         bio=["Okon brings high-energy Afrobeats with a live hype set that gets rooms moving.",
-              "Available for shows, festival slots and brand events looking for a headline moment."]),
 ]
 BY_SLUG = {a["slug"]: a for a in ROSTER}
 for i, a in enumerate(ROSTER):
@@ -70,14 +42,8 @@ for i, a in enumerate(ROSTER):
     a["seed"] = i * 37 + len(a["name"]) * 11
     a["initials"] = "".join(p[0] for p in a["name"].replace("DJ ", "").split())[:2]
 
-DATES = [
-    ("Nov 07", "Sat", "okon", "Rooftop series", "Williamsburg, BK", "Residency"),
-    ("Nov 14", "Sat", "marisol-vega", "Hotel lobby lounge", "Midtown, NYC", "Hospitality"),
-    ("Nov 21", "Sat", "knxx", "Warehouse party", "Bushwick, BK", "Club night"),
-    ("Dec 05", "Sat", "lux-ama", "Product launch", "SoHo, NYC", "Brand event"),
-    ("Dec 12", "Sat", "selector-dre", "Holiday party", "DUMBO, BK", "Private"),
-    ("Dec 19", "Sat", "nina-rue", "Rooftop series", "Williamsburg, BK", "Residency"),
-]
+# Add real dates here: ("Nov 07", "Sat", "artist-slug", "Venue", "City", "Type")
+DATES = []
 
 SERVICES = [
     ("DJ Management &amp; Booking", "For DJs · For venues",
@@ -99,6 +65,8 @@ SERVICES = [
 
 NAV = [("home", "Home", ""), ("roster", "Roster", "roster.html"), ("services", "Services", "services.html"),
        ("dates", "Dates", "dates.html"), ("about", "About", "about.html")]
+if not DATES:
+    NAV = [n for n in NAV if n[0] != "dates"]
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
@@ -179,7 +147,8 @@ def photo(a, p):
 
 def card(a, p):
     kind = "DJ" if a["type"] == "dj" else "Artist"
-    meta = kind + (" · " + e(a["genre"]) if a.get("genre") else "")
+    genre = a.get("genre", "")
+    meta = e(genre) if genre.startswith(kind) else kind + (" · " + e(genre) if genre else "")
     sample = '<span class="sample">Sample</span>' if a.get("sample", True) else ""
     return f"""<a class="card" href="{p}roster/{a['slug']}.html" data-type="{a['type']}">
   <div class="photo">{photo(a, p)}{sample}</div>
@@ -220,6 +189,26 @@ def cta_band(p):
   <div><div class="label">Booking desk</div><h2>Book now</h2><p>Tell us the date, the room and the crowd.</p></div>
   <a class="btn" href="{p}book.html">Start an inquiry →</a>
 </div></section>"""
+
+
+def roster_tabs():
+    if len({a["type"] for a in ROSTER}) < 2:
+        return ""
+    return """<div class="tabs" role="group" aria-label="Filter roster">
+      <button class="tab" id="tab-all" data-filter="all" aria-pressed="true">All</button>
+      <button class="tab" id="tab-dj" data-filter="dj" aria-pressed="false">DJs</button>
+      <button class="tab" id="tab-artist" data-filter="artist" aria-pressed="false">Artists</button>
+    </div>"""
+
+
+def upcoming_section():
+    if not DATES:
+        return ""
+    return f"""<section class="block" id="dates"><div class="wrap">
+  <div class="head"><h2>Upcoming</h2><p>Where the roster is playing next.</p></div>
+  {dates_table(DATES[:5], "")}
+</div></section>
+"""
 
 
 def home():
@@ -272,19 +261,11 @@ def home():
 <section class="block roster-bg" id="roster"><div class="wrap">
   <div class="head">
     <h2>Roster</h2>
-    <div class="tabs" role="group" aria-label="Filter roster">
-      <button class="tab" id="tab-all" data-filter="all" aria-pressed="true">All</button>
-      <button class="tab" id="tab-dj" data-filter="dj" aria-pressed="false">DJs</button>
-      <button class="tab" id="tab-artist" data-filter="artist" aria-pressed="false">Artists</button>
-    </div>
+    {roster_tabs()}
   </div>
   <div class="grid">{cards}</div>
 </div></section>
-<section class="block" id="dates"><div class="wrap">
-  <div class="head"><h2>Upcoming</h2><p>Where the roster is playing next. <span class="sample">Sample dates</span></p></div>
-  {dates_table(DATES[:5], "")}
-</div></section>
-{about_section()}
+{upcoming_section()}{about_section()}
 {book_section("h2")}"""
     return body
 
@@ -294,12 +275,7 @@ def roster_page():
     return f"""{page_head('Roster', 'Roster', 'DJs and artists represented by SPLY/DMND. Tap a name to see their profile and book them.')}
 <section class="block roster-bg"><div class="wrap">
   <div class="head">
-    <div class="tabs" role="group" aria-label="Filter roster">
-      <button class="tab" id="tab-all" data-filter="all" aria-pressed="true">All</button>
-      <button class="tab" id="tab-dj" data-filter="dj" aria-pressed="false">DJs</button>
-      <button class="tab" id="tab-artist" data-filter="artist" aria-pressed="false">Artists</button>
-    </div>
-    <span class="sample">Sample roster</span>
+    {roster_tabs()}
   </div>
   <div class="grid">{cards}</div>
 </div></section>
@@ -319,7 +295,7 @@ def services_page():
 
 
 def dates_page():
-    return f"""{page_head('Dates', 'Upcoming', 'Where the roster is playing next. <span class="sample">Sample dates</span>')}
+    return f"""{page_head('Dates', 'Upcoming', 'Where the roster is playing next.')}
 <section class="block"><div class="wrap">{dates_table(DATES, "")}</div></section>
 {cta_band("")}"""
 
@@ -392,7 +368,10 @@ def artist_page(a):
     p = "../"
     kind = "DJ" if a["type"] == "dj" else "Artist"
     rows = [r for r in DATES if r[2] == a["slug"]]
-    dates = dates_table(rows, p, show_artist=False) if rows else '<p class="empty">No public dates right now. Book a private date below.</p>'
+    dates = f"""<section class="block"><div class="wrap">
+  <div class="head"><h2>Dates</h2></div>
+  {dates_table(rows, p, show_artist=False)}
+</div></section>""" if rows else ""
     others = [x for x in ROSTER if x["slug"] != a["slug"]]
     idx = ROSTER.index(a)
     others = (others[idx:] + others[:idx])[:4]
@@ -436,10 +415,7 @@ def artist_page(a):
     </div>
   </div>
 </div></section>
-<section class="block"><div class="wrap">
-  <div class="head"><h2>Dates</h2></div>
-  {dates}
-</div></section>
+{dates}
 <section class="block roster-bg"><div class="wrap">
   <div class="head"><h2>More roster</h2><a class="more" href="{p}roster.html">Full roster →</a></div>
   <div class="grid">{more}</div>
@@ -457,10 +433,11 @@ PAGES = [
     ("index.html", "Home", "SPLY/DMND is a Brooklyn agency for DJ management and booking, artist representation, hospitality, events and experiential.", "home", home()),
     ("roster.html", "Roster", "DJs and artists represented by SPLY/DMND.", "roster", roster_page()),
     ("services.html", "Services", "DJ management, artist representation, hospitality, event curation and experiential.", "services", services_page()),
-    ("dates.html", "Dates", "Upcoming dates for the SPLY/DMND roster.", "dates", dates_page()),
     ("about.html", "About", "About SPLY/DMND.", "about", about_page()),
     ("book.html", "Book now", "Book a DJ or artist from SPLY/DMND.", "book", book_page()),
 ]
+if DATES:
+    PAGES.append(("dates.html", "Dates", "Upcoming dates for the SPLY/DMND roster.", "dates", dates_page()))
 for a in ROSTER:
     PAGES.append((f"roster/{a['slug']}.html", a["name"], f"{a['name']}: {a['genre']}. Book through SPLY/DMND.", "roster", artist_page(a)))
 
