@@ -26,6 +26,19 @@ ROSTER = [
          bio=["Jordan “All-En1” Allen remembers exactly when he wanted to get into the music business. It was his 8th grade end-of-year trip, and he had stayed up way too late the night before recording the best new songs off the radio (yes, he came up in the era when that was the only way to make mixtapes). When he played the tape on the bus to Busch Gardens, everyone wanted a copy. That's when he knew he had an ear for music.",
               "His ear for music grew into a passion for sharing it with others. He soon learned to DJ and went on to host a successful college radio show at WNUR 89.3 at Northwestern University. His love of DJing and interest in the music industry eventually landed him in New York City as an intern, and then manager, at the legendary Violator Music Management, working for music mogul and visionary Chris Lighty.",
               "At Violator, Jordan honed his management and A&R skills on projects for Soulja Boy, Diggy Simmons and 50 Cent, and with corporate partners such as vitaminwater and Coca-Cola. That experience inspired him to start his own artist management and events company, FTM, where he put on shows and spun at parties in some of NYC’s most prominent venues."]),
+    dict(slug="allen-mclean", name="Allen McLean", type="dj", genre="DJ duo · Caribbean Dance Music",
+         role="DJs, producers, nice guys", members=[("All-En1", "all-en1", "Jamaica"), ("DJ Clean", "dj-clean", "Trinidad")],
+         sound="CDM (Caribbean Dance Music): Caribbean roots infused with every genre",
+         releases="Believe (with Yung Lil Big), Bad Girl (with C. Rich), SMWYWW",
+         mixes="Twerkmas, Hoodie and Mask, Basshall Bashment",
+         sample=False, photo="images/allen-mclean.jpg", pos="24% 30%",
+         email="djallenmclean@gmail.com", website="https://www.allenmclean.com",
+         instagram="https://www.instagram.com/allen_mclean/", twitter="https://x.com/allen_mclean",
+         soundcloud="https://soundcloud.com/allenmclean", youtube="https://www.youtube.com/@allenmclean",
+         facebook="https://www.facebook.com/allenmclean", snapchat="https://www.snapchat.com/add/allen_mclean",
+         bio=["Allen McLean isn\u2019t your typical DJ duo. Yeah, we know you\u2019ve heard that before. This time it\u2019s true! These two didn\u2019t meet in high school and become BFFs. They didn\u2019t find each other on Myspace, make music over the internet and become famous. They definitely didn\u2019t meet at Electric Daisy Carnival (they hate the smell of daisies).",
+              "These two met at an AA meeting in another dimension known as Sector X. Don\u2019t believe it? Read the warning posters left around NYC and their hospitality rider. It reads like a Lindsay Lohan unpaid club bill covered in unicorn blood. After liberating a small village in South America from the cruel hands of DJ Idontgiveafuckwhatiplay, DJs All-En1 (Jamaica) and DJ Clean (Trinidad) are either the DJs every party wants or every party fears. The energy is real with these two! It\u2019s so real, they have to wear masks so they don\u2019t face prosecution from the last kid that overdosed on the fear of God and good ass music!",
+              "Drawing from their individual Caribbean roots, love for all genres of music and a background of PTWMD (Post Traumatic Wack Music Disorder), Allen McLean is pushing sound barriers with what they like to call \u201cCDM\u201d: Caribbean Dance Music. While Caribbean music has influenced music culture, this duo is infusing their roots with all music to create an amazing party experience. Think of them as a post-apocalyptic hitmen DJ duo that\u2019s here to save you from wack parties and your mom\u2019s casserole."]),
     dict(slug="june-20ix", name="JUNE 20IX", type="dj", genre="DJ duo",
          sample=False, photo="images/june-20ix.jpg", pos="45% 35%",
          bio=["JUNE 20IX is a DJ duo represented by SPLY/DMND.",
@@ -385,8 +398,21 @@ def artist_page(a):
             key = "genre"
         if a.get(key):
             facts.append(f"<li><span>{label}</span><span>{e(a[key])}</span></li>")
-    if a.get("mixcloud"):
-        facts.append(f'<li><span>Listen</span><span><a href="{a["mixcloud"]}" target="_blank" rel="noopener">Mixcloud</a></span></li>')
+        if key == "aka" and a.get("members"):
+            links = "".join(f'<a href="{p}roster/{slug}.html">{e(n)} ({e(o)})</a>' if slug in BY_SLUG else f"{e(n)} ({e(o)})" for n, slug, o in a["members"])
+            facts.append(f"<li><span>Members</span><span>{links}</span></li>")
+    groups = [g for g in ROSTER if any(slug == a["slug"] for _, slug, _ in g.get("members", []))]
+    if groups:
+        facts.append("<li><span>Part of</span><span>" + ", ".join(f'<a href="{p}roster/{g["slug"]}.html">{e(g["name"])}</a>' for g in groups) + "</span></li>")
+    for label, key in (("Releases", "releases"), ("Mixes", "mixes")):
+        if a.get(key):
+            facts.append(f"<li><span>{label}</span><span>{e(a[key])}</span></li>")
+    listen = [(n, a[k]) for n, k in (("SoundCloud", "soundcloud"), ("Mixcloud", "mixcloud"), ("YouTube", "youtube")) if a.get(k)]
+    if listen:
+        facts.append('<li><span>Listen</span><span>' + "".join(f'<a href="{u}" target="_blank" rel="noopener">{n}</a>' for n, u in listen) + "</span></li>")
+    social = [(n, a[k]) for n, k in (("Facebook", "facebook"), ("Snapchat", "snapchat")) if a.get(k)]
+    if social:
+        facts.append('<li><span>More</span><span>' + "".join(f'<a href="{u}" target="_blank" rel="noopener">{n}</a>' for n, u in social) + "</span></li>")
     if a.get("instagram"):
         handle = "@" + a["instagram"].rstrip("/").split("/")[-1]
         facts.append(f'<li><span>Instagram</span><span><a href="{a["instagram"]}" target="_blank" rel="noopener">{handle}</a></span></li>')
