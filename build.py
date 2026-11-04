@@ -17,6 +17,15 @@ ROSTER = [
          bio=["DJ Clean, known as \u201cThe Sound of The People,\u201d is a Los Angeles-based open-format DJ with over 20 years of experience bringing energy, style, and musical range to clubs, private events, corporate functions, festivals, brand activations, and cultural spaces.",
               "Originally from Washington, D.C., DJ Clean is prepared for any occasion, with the ability to move seamlessly through hip-hop, R&B, pop, house, dancehall, Afro-Caribbean rhythms, global sounds, classics, throwbacks, and feel-good party records. His versatility allows him to read any room and create the right atmosphere for everything from luxury private events and weddings to agency bookings, corporate clients, nightlife, and large-scale experiences.",
               "Whether behind the booth, on the mic, or curating the perfect soundtrack, DJ Clean brings professionalism, personality, and the musical range needed to make every event feel polished, intentional, and unforgettable."]),
+    dict(slug="all-en1", name="All-En1", type="dj", genre="DJ · Producer", based="New York, NY",
+         aka="Jordan Allen", role="DJ, producer, music lover",
+         clients="Red Bull, Atlantic Records, Coca-Cola, Atlas Strategy Group",
+         sample=False, email="all-en1@all-en1.com",
+         instagram="https://www.instagram.com/all_en1/", twitter="https://x.com/all_en1",
+         photo="images/all-en1.jpg", pos="50% 30%",
+         bio=["Jordan “All-En1” Allen remembers exactly when he wanted to get into the music business. It was his 8th grade end-of-year trip, and he had stayed up way too late the night before recording the best new songs off the radio (yes, he came up in the era when that was the only way to make mixtapes). When he played the tape on the bus to Busch Gardens, everyone wanted a copy. That's when he knew he had an ear for music.",
+              "His ear for music grew into a passion for sharing it with others. He soon learned to DJ and went on to host a successful college radio show at WNUR 89.3 at Northwestern University. His love of DJing and interest in the music industry eventually landed him in New York City as an intern, and then manager, at the legendary Violator Music Management, working for music mogul and visionary Chris Lighty.",
+              "At Violator, Jordan honed his management and A&R skills on projects for Soulja Boy, Diggy Simmons and 50 Cent, and with corporate partners such as vitaminwater and Coca-Cola. That experience inspired him to start his own artist management and events company, FTM, where he put on shows and spun at parties in some of NYC’s most prominent venues."]),
     dict(slug="marisol-vega", name="Marisol Vega", type="dj", genre="House · Disco", based="Queens, NY",
          avail="Hotel lounges, dinner service, late nights",
          bio=["Marisol Vega builds slow-burn sets that start as dinner music and end as a dance floor.",
@@ -383,8 +392,8 @@ def artist_page(a):
     badge = ' <span class="sample">Sample profile</span>' if a.get("sample", True) else ""
     photo_tag = "" if a.get("photo") else '<span class="sample">Photo</span>'
     facts = []
-    for label, key in (("Also known as", "aka"), ("Sound", "sound"), ("Based in", "based"), ("From", "origin"), ("Available for", "avail")):
-        if key == "sound" and not a.get("sound"):
+    for label, key in (("Also known as", "aka"), ("Role", "role"), ("Sound", "sound"), ("Based in", "based"), ("From", "origin"), ("Available for", "avail"), ("Notable clients", "clients")):
+        if key == "sound" and not a.get("sound") and not a.get("role"):
             key = "genre"
         if a.get(key):
             facts.append(f"<li><span>{label}</span><span>{e(a[key])}</span></li>")
@@ -393,10 +402,15 @@ def artist_page(a):
     if a.get("instagram"):
         handle = "@" + a["instagram"].rstrip("/").split("/")[-1]
         facts.append(f'<li><span>Instagram</span><span><a href="{a["instagram"]}" target="_blank" rel="noopener">{handle}</a></span></li>')
+    if a.get("twitter"):
+        handle = "@" + a["twitter"].rstrip("/").split("/")[-1]
+        facts.append(f'<li><span>X / Twitter</span><span><a href="{a["twitter"]}" target="_blank" rel="noopener">{handle}</a></span></li>')
+    if a.get("email"):
+        facts.append(f'<li><span>Email</span><span><a href="mailto:{a["email"]}">{e(a["email"])}</a></span></li>')
     if a.get("website"):
         host = a["website"].split("//")[-1].strip("/")
         facts.append(f'<li><span>Website</span><span><a href="{a["website"]}" target="_blank" rel="noopener">{e(host)}</a></span></li>')
-    else:
+    elif a.get("sample", True):
         facts.append('<li><span>Listen</span><span><a href="https://soundcloud.com" target="_blank" rel="noopener">SoundCloud</a><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></span></li>')
     facts = "".join(facts)
     return f"""<section class="profile"><div class="wrap">
