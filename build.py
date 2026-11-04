@@ -14,6 +14,16 @@ ROSTER = [
          sample=False, website="https://www.thesoundofthepeople.com",
          mixcloud="https://www.mixcloud.com/djclean/", instagram="https://www.instagram.com/djclean/",
          photo="images/dj-clean.jpg", pos="38% 30%",
+         epk=dict(
+             tagline="Open-format DJ. 20+ years reading rooms from D.C. to L.A.",
+             stats=[("20+", "Years behind the decks"), ("L.A.", "Based in Los Angeles"), ("D.C.", "Raised in Washington")],
+             mixes=[("Open Format Pop, R&B, Hip-Hop & Afrobeat Mix", "dj-clean-open-format-pop-rb-hip-hop-afrobeat-mix"),
+                    ("The Future Concert: We Don\u2019t Trust You Tour Live DJ Set", "the-future-we-dont-trust-you-tour-live-dj-set"),
+                    ("HyLove Fest Part 1: House Music Set", "hylove-fest-part-1-feat-dj-clean-house-music-set"),
+                    ("Kaytranada meets Jamiroquai Mix", "kaytranada-meets-jamiroquai")],
+             genres=["Hip-hop", "R&B", "Pop", "House", "Dancehall", "Afrobeats", "Afro-Caribbean", "Global", "Classics", "Throwbacks"],
+             events=["Clubs & nightlife", "Private events", "Weddings", "Corporate functions", "Festivals", "Brand activations", "Cultural spaces"],
+         ),
          bio=["DJ Clean, known as \u201cThe Sound of The People,\u201d is a Los Angeles-based open-format DJ with over 20 years of experience bringing energy, style, and musical range to clubs, private events, corporate functions, festivals, brand activations, and cultural spaces.",
               "Originally from Washington, D.C., DJ Clean is prepared for any occasion, with the ability to move seamlessly through hip-hop, R&B, pop, house, dancehall, Afro-Caribbean rhythms, global sounds, classics, throwbacks, and feel-good party records. His versatility allows him to read any room and create the right atmosphere for everything from luxury private events and weddings to agency bookings, corporate clients, nightlife, and large-scale experiences.",
               "Whether behind the booth, on the mic, or curating the perfect soundtrack, DJ Clean brings professionalism, personality, and the musical range needed to make every event feel polished, intentional, and unforgettable."]),
@@ -437,7 +447,7 @@ def artist_page(a):
     </ul>
     <div class="actions">
       <a class="btn solid" href="{p}book.html#{a['slug']}">Book {e(a['name'])}</a>
-      <a class="btn" href="{p}roster.html">Back to roster</a>
+      {f'<a class="btn" href="{p}epk/{a["slug"]}.html">Press kit (EPK)</a>' if a.get("epk") else f'<a class="btn" href="{p}roster.html">Back to roster</a>'}
     </div>
   </div>
 </div></section>
@@ -446,6 +456,94 @@ def artist_page(a):
   <div class="head"><h2>More roster</h2><a class="more" href="{p}roster.html">Full roster →</a></div>
   <div class="grid">{more}</div>
 </div></section>"""
+
+
+SITE_URL = "https://splyanddmnd.com"
+
+
+def epk_page(a):
+    k = a["epk"]
+    p = "../"
+    slug, name = a["slug"], e(a["name"])
+    stats = "".join(f'<div class="stat"><b>{e(v)}</b><span>{e(l)}</span></div>' for v, l in k.get("stats", []))
+    def chips(items):
+        return "".join(f"<li>{e(x)}</li>" for x in items)
+    mixes = ""
+    if k.get("mixes") and a.get("mixcloud"):
+        user = a["mixcloud"].rstrip("/").split("/")[-1]
+        rows = []
+        for i, (title, mslug) in enumerate(k["mixes"]):
+            feed = f"%2F{user}%2F{mslug}%2F"
+            h = 120 if i == 0 else 60
+            mini = "" if i == 0 else "&mini=1"
+            rows.append(f'<div class="mix"><div class="label">{e(title)}</div>'
+                        f'<iframe title="{e(title)}" loading="lazy" height="{h}" '
+                        f'src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&hide_artwork=1{mini}&feed={feed}" '
+                        f'allow="autoplay" frameborder="0"></iframe></div>')
+        mixes = f"""<section class="epk-sec" id="listen"><div class="wrap epk-grid">
+  <div class="epk-side"><div class="label">01</div><h2>Listen</h2><p>Press play. More on <a href="{a['mixcloud']}" target="_blank" rel="noopener">Mixcloud</a>.</p></div>
+  <div class="mixes">{"".join(rows)}</div>
+</div></section>"""
+    links = [(n, a[key]) for n, key in (("Mixcloud", "mixcloud"), ("SoundCloud", "soundcloud"), ("YouTube", "youtube"),
+                                        ("Instagram", "instagram"), ("X / Twitter", "twitter"), ("Website", "website")) if a.get(key)]
+    link_html = "".join(f'<a class="btn" href="{u}" target="_blank" rel="noopener">{n} ↗</a>' for n, u in links)
+    bio = "".join(f"<p>{e(t)}</p>" for t in a["bio"])
+    photo_url = f"{p}{a['photo']}"
+    aka = f'<div class="label">{e(a["aka"])}</div>' if a.get("aka") else ""
+    body = f"""<header class="epk-bar"><div class="wrap">
+  <a class="mark" href="{p}">SPLY<span>/</span>DMND</a>
+  <span class="label">Electronic press kit</span>
+  <a class="btn solid" href="#booking">Book {name}</a>
+</div></header>
+<main>
+<section class="epk-hero"><div class="wrap">
+  <div class="epk-photo"><img src="{photo_url}" alt="{name}" style="object-position:{a.get('pos', 'center')}"></div>
+  <div class="epk-intro">
+    {aka}
+    <h1>{name}</h1>
+    <p class="epk-tag">{e(k.get("tagline", ""))}</p>
+    <div class="stats">{stats}</div>
+    <div class="actions"><a class="btn solid" href="#booking">Check availability</a><a class="btn" href="#listen">Listen</a></div>
+  </div>
+</div></section>
+{mixes}
+<section class="epk-sec"><div class="wrap epk-grid">
+  <div class="epk-side"><div class="label">02</div><h2>Bio</h2></div>
+  <div class="epk-bio">{bio}</div>
+</div></section>
+<section class="epk-sec"><div class="wrap epk-grid">
+  <div class="epk-side"><div class="label">03</div><h2>Sound &amp; rooms</h2></div>
+  <div class="epk-lists">
+    <div><div class="label">Plays</div><ul class="chips">{chips(k.get("genres", []))}</ul></div>
+    <div><div class="label">Booked for</div><ul class="chips">{chips(k.get("events", []))}</ul></div>
+  </div>
+</div></section>
+<section class="epk-sec"><div class="wrap epk-grid">
+  <div class="epk-side"><div class="label">04</div><h2>Press</h2><p>Approved photo for flyers, listings and socials. Hi-res and additional shots on request.</p></div>
+  <div class="press">
+    <figure><img src="{photo_url}" alt="{name} press photo" loading="lazy"><figcaption><span class="label">Press photo 01</span><a class="more" href="{photo_url}" download="{slug}-press-photo.jpg">Download ↓</a></figcaption></figure>
+  </div>
+</div></section>
+<section class="epk-sec"><div class="wrap epk-grid">
+  <div class="epk-side"><div class="label">05</div><h2>Links</h2></div>
+  <div class="epk-links">{link_html}</div>
+</div></section>
+<section class="epk-book" id="booking"><div class="wrap">
+  <div><div class="label">Booking · Represented by SPLY/DMND</div><h2>Book {name}</h2>
+  <p>Send the date, city, venue and set length. We\u2019ll come back with availability and rates.</p></div>
+  <div class="actions"><a class="btn solid" href="{p}book.html#{slug}">Start an inquiry →</a><a class="btn" href="{p}roster/{slug}.html">Full profile</a></div>
+</div></section>
+</main>
+<footer class="epk-foot"><div class="wrap"><span class="label">{name} · Electronic press kit</span><a class="label" href="{p}">splyanddmnd.com</a></div></footer>"""
+    title = f"{a['name']} · Press kit"
+    desc = f"{a['name']}: {k.get('tagline', '')} Mixes, bio, press photos and booking through SPLY/DMND."
+    og = (f'<meta property="og:type" content="website">\n<meta property="og:title" content="{e(title)}">\n'
+          f'<meta property="og:description" content="{e(desc)}">\n<meta property="og:image" content="{SITE_URL}/{a["photo"]}">\n'
+          f'<meta property="og:url" content="{SITE_URL}/epk/{slug}">\n<meta name="twitter:card" content="summary_large_image">')
+    return (f'<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+            f'<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            f'<title>{e(title)}</title>\n<meta name="description" content="{e(desc)}">\n{og}\n{FONTS}\n'
+            f'<link rel="stylesheet" href="{p}styles.css">\n</head>\n<body class="epk">\n{body}\n</body>\n</html>\n')
 
 
 def write(path, html):
@@ -469,6 +567,9 @@ for a in ROSTER:
 
 for path, title, desc, active, body in PAGES:
     write(path, page(path, title, desc, active, body))
+for a in ROSTER:
+    if a.get("epk"):
+        write(f"epk/{a['slug']}.html", epk_page(a))
 
 # Optional preview copy of the home page without the document skeleton (used for Claude artifact previews)
 if os.environ.get("ARTIFACT_PREVIEW"):
