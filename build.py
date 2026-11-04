@@ -27,7 +27,7 @@ ROSTER = [
          bio=["DJ Clean, known as \u201cThe Sound of The People,\u201d is a Los Angeles-based open-format DJ with over 20 years of experience bringing energy, style, and musical range to clubs, private events, corporate functions, festivals, brand activations, and cultural spaces.",
               "Originally from Washington, D.C., DJ Clean is prepared for any occasion, with the ability to move seamlessly through hip-hop, R&B, pop, house, dancehall, Afro-Caribbean rhythms, global sounds, classics, throwbacks, and feel-good party records. His versatility allows him to read any room and create the right atmosphere for everything from luxury private events and weddings to agency bookings, corporate clients, nightlife, and large-scale experiences.",
               "Whether behind the booth, on the mic, or curating the perfect soundtrack, DJ Clean brings professionalism, personality, and the musical range needed to make every event feel polished, intentional, and unforgettable."]),
-    dict(slug="all-en1", name="All-En1", type="dj", genre="DJ · Producer", based="New York, NY",
+    dict(slug="all-en1", name="All-En1", type="dj", genre="DJ · Producer", based="Brooklyn, NY",
          aka="Jordan Allen", role="DJ, producer, music lover",
          clients="Red Bull, Atlantic Records, Coca-Cola, Atlas Strategy Group",
          sample=False, email="all-en1@all-en1.com",
