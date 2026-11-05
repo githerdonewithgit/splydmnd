@@ -29,7 +29,7 @@ ROSTER = [
               "Whether behind the booth, on the mic, or curating the perfect soundtrack, DJ Clean brings professionalism, personality, and the musical range needed to make every event feel polished, intentional, and unforgettable."]),
     dict(slug="all-en1", name="All-En1", type="dj", genre="DJ · Producer", based="Brooklyn, NY",
          aka="Jordan Allen", role="DJ, producer, music lover",
-         clients="Red Bull, Atlantic Records, Coca-Cola, Atlas Strategy Group",
+         clients="Red Bull, Atlantic Records, Coca-Cola, Atlas Strategy Group, Green Bronx Machine",
          sample=False, email="all-en1@all-en1.com",
          instagram="https://www.instagram.com/all_en1/", twitter="https://x.com/all_en1",
          photo="images/all-en1-lantern.jpg", pos="38% 30%",
